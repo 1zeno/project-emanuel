@@ -55,13 +55,13 @@
             fetch(url)
             .then(result=>result.json())
             .then((data)=>{
-                let data_json = JSON.stringify(data, null, 4);
+                let dataJson = JSON.stringify(data, null, 4);
                 //process the returned data
                 document.getElementById('output').innerHTML = data_json;
                 //work with results array...
-                let data_results = data.results;
+                let dataResults = data.results;
                 let image = data.results[1].backdrop_path; 
-                console.log(data.results[1]);
+                //console.log(data.results[1]);
 
                 return data.results[1].title;
                 
