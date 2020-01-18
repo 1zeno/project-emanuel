@@ -17,7 +17,9 @@ import MainLayout from "../../layouts/MainLayout";
 // MARK: Components
 import FilledButton from "../../components/FilledButton";
 
-interface IProps {
+//import api
+import Movie from "../../resources/api_movie";
+;interface IProps {
 	routerStore: RouterStore;
 }
 
@@ -29,9 +31,12 @@ export default class HomePage extends React.Component<IProps> {
 			<MainLayout>
 				<div className="homePageContainer">
 					<h1>{strings.welcome}</h1>
+					<div id="output">
+					</div>
+					<p><img src="https://image.tmdb.org/t/p/w185/rYyIqfx6BNpb7s0Wy5OqddCsKEQ.jpg" /></p>
 
 					<FilledButton
-						onClick={() => alert(strings.helloWorld)}
+						onClick={() => Movie.topRatedMovie()}
 					>
 						{strings.helloWorld}
 					</FilledButton>
