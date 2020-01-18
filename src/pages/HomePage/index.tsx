@@ -17,7 +17,7 @@ import MainLayout from "../../layouts/MainLayout";
 // MARK: Components
 import FilledButton from "../../components/FilledButton";
 
-//import api
+// import api
 import Movie from "../../resources/api_movie";
 interface IProps {
 	routerStore: RouterStore;
