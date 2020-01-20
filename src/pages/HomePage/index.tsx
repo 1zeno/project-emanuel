@@ -17,8 +17,12 @@ import MainLayout from "../../layouts/MainLayout";
 // MARK: Components
 import FilledButton from "../../components/FilledButton";
 
-// import api
-import Movie from "../../resources/api_movie";
+// Axios para requisição http
+import axios from "axios";
+
+// import Movies
+import Movies from "../../components/Movies";
+
 interface IProps {
 	routerStore: RouterStore;
 }
@@ -26,22 +30,26 @@ interface IProps {
 @inject("routerStore")
 @observer
 export default class HomePage extends React.Component<IProps> {
-	public render() {
-		return (
-			<MainLayout>
-				<div className="homePageContainer">
-					<h1>{strings.welcome}</h1>
-					<div id="output">
-					</div>
-					<p><img src="https://image.tmdb.org/t/p/w185/rYyIqfx6BNpb7s0Wy5OqddCsKEQ.jpg" alt="movieImage" /></p>
 
-					<FilledButton
-						onClick={() => Movie.topRatedMovie()}
-					>
-						{strings.helloWorld}
-					</FilledButton>
-				</div>
-			</MainLayout>
-		);
+	state = {
+		movies : []	
+	}
+
+// Requisição get para obter os dados da api	
+	async componentDidMount(){
+		axios.get('https://api.themoviedb.org/3/movie/popular?api_key=323e64a92d60093c30b3a0592469e12b&language=en-US&page=1')
+		.then(res => this.setState({ movies : res.data.results }))
+	}
+
+	public	render() {
+			return(
+				<MainLayout>
+					<div className="homePageContainer">
+					<Movies movies={this.state.movies} />
+					</div>
+				</MainLayout>
+				
+					
+				);
 	}
 }
