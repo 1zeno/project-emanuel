@@ -32,13 +32,27 @@ interface IProps {
 export default class HomePage extends React.Component<IProps> {
 
 	public state = {
-		movies :[]};
+		movies :[]
+	};
 
 	// Requisição get para obter os dados da api	
-	public async componentDidMount() {
-		Axios.get("https://api.themoviedb.org/3/movie/popular?api_key=323e64a92d60093c30b3a0592469e12b&language=en-US&page=1")
+	async componentDidMount() {
+		{
+		await	Axios({
+			method: "get",
+			url : "https://api.themoviedb.org/3/movie/popular",
+			params : {
+				api_key : "323e64a92d60093c30b3a0592469e12b",
+				language : "en-US",
+				page : 1,
+			}
+		})
 		.then((res) => this.setState({ movies : res.data.results }))
+		.catch((err)=> {
+			console.log("Erro na requisição: " + err)	
+		})
 	}
+}
 
 	public	render() {
 		return(
