@@ -32,7 +32,7 @@ interface IProps {
 export default class HomePage extends React.Component<IProps> {
 
 	public state = {
-		movies :[]
+		movies : []
 	};
 
 	// Requisição get para obter os dados da api	
@@ -48,7 +48,7 @@ export default class HomePage extends React.Component<IProps> {
 			}
 		})
 		.then((res) => this.setState({ movies : res.data.results }))
-		.catch((err)=> {
+		.catch((err) => {
 			console.log("Erro na requisição: " + err)	
 		})
 	}
@@ -58,7 +58,7 @@ export default class HomePage extends React.Component<IProps> {
 		return(
 			<MainLayout>
 				<div className="homePageContainer">
-				<Movies movies={this.state.movies} />
+					<Movies movies={this.state.movies} />
 				</div>
 			</MainLayout>					
 		);
